@@ -8,13 +8,3 @@ const backendUrl = import.meta.env.VITE_BACKEND_API;
     {{ backendUrl }}
   </div>
 </template>
-
-<style>
-@media (min-width: 1024px) {
-  .about {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-  }
-}
-</style>
