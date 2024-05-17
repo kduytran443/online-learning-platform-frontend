@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { mergeProps, ref } from "vue";
+import { ref } from "vue";
+import CategoryListMenuButton from "./CategoryListMenuButton.vue";
 
 const { appTitle, menuItems } = {
   appTitle: import.meta.env.VITE_APP_NAME,
@@ -10,18 +11,6 @@ const { appTitle, menuItems } = {
   ]
 };
 
-const items = ref([
-  { code: "code", name: "Development" },
-  { code: "code", name: "Business" },
-  { code: "code", name: "Finance & Accounting" },
-  { code: "code", name: "IT & Software" },
-  { code: "code", name: "Office Productivity" },
-  { code: "code", name: "Personal Development" },
-  { code: "code", name: "Design" },
-  { code: "code", name: "Marketing" },
-  { code: "code", name: "Health & Fitness" },
-  { code: "code", name: "Music" }
-]);
 const sidebar = ref(false);
 </script>
 
@@ -58,26 +47,7 @@ const sidebar = ref(false);
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items class="tw-hidden sm:tw-block">
-        <v-menu>
-          <template v-slot:activator="{ props: menu }">
-            <v-tooltip location="top">
-              <template v-slot:activator="{ props: tooltip }">
-                <v-btn v-bind="mergeProps(menu, tooltip)"
-                  ><v-icon left dark>mdi-shape</v-icon>
-                  <div class="tw-ml-2">Category</div>
-                </v-btn>
-              </template>
-              <span>Show all categories</span>
-            </v-tooltip>
-          </template>
-          <v-list>
-            <v-list-item v-for="(item, index) in items" :key="index" :to="`/category/${item.code}`">
-              <v-list-item-action>
-                <v-list-item-title>{{ item.name }}</v-list-item-title>
-              </v-list-item-action>
-            </v-list-item>
-          </v-list>
-        </v-menu>
+        <CategoryListMenuButton />
         <v-btn v-for="item in menuItems" :key="item.title" :to="item.path">
           <v-icon left dark>{{ item.icon }}</v-icon>
           <div class="tw-ml-2">{{ item.title }}</div>
