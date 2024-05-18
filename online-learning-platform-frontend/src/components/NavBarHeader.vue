@@ -1,13 +1,14 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import CategoryListMenuButton from "./CategoryListMenuButton.vue";
+import SearchInHeader from "./SearchInHeader.vue";
+import urlConstant from "@/constants/urlConstant";
 
 const { appTitle, menuItems } = {
   appTitle: import.meta.env.VITE_APP_NAME,
   menuItems: [
-    { title: "Home", path: "/home", icon: "mdi-home" },
-    { title: "Sign Up", path: "/signup", icon: "mdi-face-man" },
-    { title: "Sign In", path: "/signin", icon: "mdi-lock" }
+    { title: "Sign Up", path: urlConstant.SIGN_UP, icon: "mdi-face-man" },
+    { title: "Log In", path: urlConstant.LOGIN_URL, icon: "mdi-lock" }
   ]
 };
 
@@ -15,7 +16,7 @@ const sidebar = ref(false);
 </script>
 
 <template>
-  <div class="tw-shadow-inner tw-shadow-sm">
+  <div class="tw-shadow-inner tw-shadow-sm tw-mb-10">
     <v-navigation-drawer v-model="sidebar">
       <v-app-bar-nav-icon @click="sidebar = !sidebar"
         ><v-icon>mdi-close</v-icon></v-app-bar-nav-icon
@@ -31,7 +32,7 @@ const sidebar = ref(false);
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-    <v-toolbar app>
+    <v-app-bar dense fixed app>
       <span class="tw-block sm:tw-hidden">
         <v-app-bar-nav-icon @click="sidebar = !sidebar"></v-app-bar-nav-icon>
       </span>
@@ -47,12 +48,13 @@ const sidebar = ref(false);
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items class="tw-hidden sm:tw-block">
+        <SearchInHeader />
         <CategoryListMenuButton />
         <v-btn v-for="item in menuItems" :key="item.title" :to="item.path">
           <v-icon left dark>{{ item.icon }}</v-icon>
           <div class="tw-ml-2">{{ item.title }}</div>
         </v-btn>
       </v-toolbar-items>
-    </v-toolbar>
+    </v-app-bar>
   </div>
 </template>
