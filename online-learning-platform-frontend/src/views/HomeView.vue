@@ -1,20 +1,6 @@
 <script setup lang="ts">
-import { mergeProps, ref } from "vue";
+import { ref } from "vue";
 import TwoParagraphBlock from "@/components/TwoParagraphBlock.vue";
-
-const tab = ref(null);
-const items = ref([
-  { name: "Development" },
-  { name: "Business" },
-  { name: "Finance & Accounting" },
-  { name: "IT & Software" },
-  { name: "Office Productivity" },
-  { name: "Personal Development" },
-  { name: "Design" },
-  { name: "Marketing" },
-  { name: "Health & Fitness" },
-  { name: "Music" }
-]);
 </script>
 
 <template>
@@ -88,10 +74,10 @@ const items = ref([
       </div>
       <div class="tw-flex tw-justify-center mt-4">
         <v-col cols="20" md="4" sm="6">
-          <v-btn rounded="xl" block>SIGN UP</v-btn>
+          <v-btn variant="tonal" rounded="xl" block>LOG IN</v-btn>
         </v-col>
         <v-col cols="20" md="4" sm="6">
-          <v-btn variant="tonal" rounded="xl" block>SIGN IN</v-btn>
+          <v-btn rounded="xl" block>SIGN UP</v-btn>
         </v-col>
       </div>
     </template>
@@ -103,7 +89,6 @@ const items = ref([
       </div>
     </template>
   </TwoParagraphBlock>
-  <div class="tw-pb-10"></div>
 </template>
 
 <style>
