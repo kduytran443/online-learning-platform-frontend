@@ -22,7 +22,7 @@ import TwoParagraphBlock from "@/components/TwoParagraphBlock.vue";
       ></v-carousel-item>
     </v-carousel>
   </div>
-  <div class="text-center tw-flex tw-justify-center tw-my-16">
+  <div class="text-center tw-flex tw-justify-center tw-my-16 tw-p-4">
     <div class="tw-max-w-[500px] tw-text-justify">
       <p class="tw-text-2xl tw-font-bold">
         Unlock Your Potential: Empower Yourself Through Education.
