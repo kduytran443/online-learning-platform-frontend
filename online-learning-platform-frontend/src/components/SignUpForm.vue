@@ -1,6 +1,9 @@
 <script setup lang="ts">
+import urlConstant from "@/constants/urlConstant";
 import initRuleMaker from "@/utils/ruleMaker";
 import { ref } from "vue";
+import { useRouter } from "vue-router";
+const router = useRouter();
 
 const valid = ref(false);
 const form = ref(null);
@@ -100,7 +103,7 @@ const validate = () => {
       <v-card-actions>
         <v-spacer></v-spacer>
 
-        <v-btn @click="validate" color="success">
+        <v-btn @click="validate" variant="elevated" color="info">
           Complete Registration
 
           <v-icon icon="mdi-chevron-right" end></v-icon>
@@ -110,11 +113,11 @@ const validate = () => {
       <v-card-actions class="mt-4">
         <v-spacer></v-spacer>
 
-        <v-btn @click="validate" color="info">
+        <v-btn @click="() => router.push(urlConstant.LOGIN_URL)" color="info">
           <v-icon icon="mdi-lock" start></v-icon>
           Login
         </v-btn>
-        <v-btn @click="validate" color="info">
+        <v-btn @click="() => router.push(urlConstant.RESEND_REGISTRATION_CONFIRM)" color="info">
           <v-icon icon="mdi-email-sync-outline" start></v-icon>
           Resend Mail Confirm
         </v-btn>
