@@ -5,7 +5,7 @@ import MainLayoutFooter from "./MainLayoutFooter.vue";
 
 <template>
   <MainLayoutHeader />
-  <main>
+  <main class="tw-min-h-screen tw-mt-10 tw-flex tw-flex-col tw-justify-center">
     <slot />
   </main>
   <MainLayoutFooter />
