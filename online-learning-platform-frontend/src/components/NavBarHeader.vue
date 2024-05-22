@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 import CategoryListMenuButton from "./CategoryListMenuButton.vue";
 import SearchInHeader from "./SearchInHeader.vue";
 import urlConstant from "@/constants/urlConstant";
+import { categoryService } from "@/services/categoryService";
 
 const { appTitle, menuItems } = {
   appTitle: import.meta.env.VITE_APP_NAME,
@@ -13,6 +14,14 @@ const { appTitle, menuItems } = {
 };
 
 const sidebar = ref(false);
+const categoryList = ref([]);
+
+onMounted(async () => {
+  const response = await categoryService.getRootList();
+  const categoryListResponse = response.data;
+  categoryList.value = categoryListResponse;
+  console.log("categoryListResponse", categoryListResponse);
+});
 </script>
 
 <template>
@@ -49,7 +58,7 @@ const sidebar = ref(false);
       <v-spacer></v-spacer>
       <v-toolbar-items class="tw-hidden sm:tw-block">
         <SearchInHeader />
-        <CategoryListMenuButton />
+        <CategoryListMenuButton :category-list="categoryList" />
         <v-btn v-for="item in menuItems" :key="item.title" :to="item.path">
           <v-icon left dark>{{ item.icon }}</v-icon>
           <div class="tw-ml-2">{{ item.title }}</div>

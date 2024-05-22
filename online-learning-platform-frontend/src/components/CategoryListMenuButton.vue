@@ -1,6 +1,12 @@
 <script setup lang="ts">
 import { mergeProps, ref } from "vue";
-const items = ref([
+
+const props = defineProps<{
+  categoryList: any;
+}>();
+
+/*
+[
   { code: "code", name: "Development" },
   { code: "code", name: "Business" },
   { code: "code", name: "Finance & Accounting" },
@@ -11,7 +17,8 @@ const items = ref([
   { code: "code", name: "Marketing" },
   { code: "code", name: "Health & Fitness" },
   { code: "code", name: "Music" }
-]);
+]
+*/
 </script>
 
 <template>
@@ -28,7 +35,11 @@ const items = ref([
       </v-tooltip>
     </template>
     <v-list>
-      <v-list-item v-for="(item, index) in items" :key="index" :to="`/category/${item.code}`">
+      <v-list-item
+        v-for="(item, index) in props.categoryList"
+        :key="index"
+        :to="`/category/${item.code}`"
+      >
         <v-list-item-action>
           <v-list-item-title>{{ item.name }}</v-list-item-title>
         </v-list-item-action>
