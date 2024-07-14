@@ -4,6 +4,7 @@ import CategoryListMenuButton from "./CategoryListMenuButton.vue";
 import SearchInHeader from "./SearchInHeader.vue";
 import urlConstant from "@/constants/urlConstant";
 import { categoryService } from "@/services/categoryService";
+import { getDummyDatacategoryList } from "@/utils/dummyData";
 
 const { appTitle, menuItems } = {
   appTitle: import.meta.env.VITE_APP_NAME,
@@ -14,13 +15,13 @@ const { appTitle, menuItems } = {
 };
 
 const sidebar = ref(false);
-const categoryList = ref([]);
+const categoryList = ref<SimpleCategoryModel[]>([]);
 
 onMounted(async () => {
-  const response = await categoryService.getRootList();
-  const categoryListResponse = response.data;
-  categoryList.value = categoryListResponse;
-  console.log("categoryListResponse", categoryListResponse);
+  // const response = await categoryService.getRootList();
+  // const categoryListResponse = response.data;
+  // categoryList.value = categoryListResponse;
+  categoryList.value = getDummyDatacategoryList();
 });
 </script>
 
