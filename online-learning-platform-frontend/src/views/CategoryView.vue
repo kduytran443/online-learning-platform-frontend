@@ -2,23 +2,22 @@
 import ClassCard from "@/components/ClassCard.vue";
 import { categoryService } from "@/services/categoryService";
 import { classQueryService } from "@/services/classQueryService";
-import { onMounted, ref, watch } from "vue";
+import { computed, onMounted, ref, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
 
 const route = useRoute();
+const router = useRouter();
 
 const page = ref<number>(parseInt(route.query.page as string) || 1);
-const size = ref<number>(parseInt(route.query.size as string) || 8);
-const categories = ref<string[]>(
+const size = ref<number>(parseInt(route.query.size as string) || 2);
+const selectedSubCategories = ref<string[]>(
   Array.isArray(route.query.categories)
     ? route.query.categories.map((cat: any) => cat as string).filter((item) => !!item)
     : [route.query.categories as string].filter((item) => !!item)
 );
 
-const selectedSubCategories = ref<string[]>([]);
-
-const classList = ref([]);
-const sorter = ref("Hottest");
+const pageDetails = ref({});
+const sorter = ref(route.query.sort || "Hottest");
 
 const category = ref<CategoryModel>({
   code: "web-development",
@@ -34,38 +33,104 @@ const makeRequestDTO = () => {
   const requestDTO = {
     page: page.value,
     size: size.value,
-    categories: [] as string[]
+    categories: [] as string[],
+    sortBy: null,
+    direction: null
   };
   requestDTO.categories.push(category.value.id);
-  if (categories.value.length == 0) {
+  if (chipList.value.indexOf("all") == -1) {
+    requestDTO.categories.push(...chipList.value);
+  } else {
     const subCategoryIds = category.value.subCategories.map((item) => item.id);
     requestDTO.categories.push(...subCategoryIds);
-  } else if (categories.value.length >= 1) {
-    requestDTO.categories.push(...categories.value);
   }
-  console.log(requestDTO);
+  if (sorter.value === "Hottest") {
+    //
+  } else if (sorter.value === "Newest") {
+    requestDTO.sortBy = "startAt";
+    requestDTO.direction = "DESC";
+  } else if (sorter.value === "Oldest") {
+    requestDTO.sortBy = "startAt";
+    requestDTO.direction = "ASC";
+  }
   return requestDTO;
+};
+
+const callAPIClassList = async () => {
+  const classResponse = await classQueryService.searchByCategory(makeRequestDTO());
+  pageDetails.value = classResponse.data;
+  console.log("classResponse", classResponse);
 };
 
 onMounted(async () => {
   const response = await categoryService.getCategoryByCode(route.params.categoryCode as string);
   category.value = response.data as CategoryModel;
-  selectedSubCategories.value = (category.value.subCategories || []).map(
-    (item) => item.id as string
-  );
   console.log(category.value);
-
-  const classResponse = await classQueryService.searchByCategory(makeRequestDTO());
-  classList.value = classResponse.data.items;
-  console.log("classResponse", classResponse);
+  callAPIClassList();
 });
 
-watch(selectedSubCategories, () => {
-  console.log(selectedSubCategories.value);
+const generateSelectedList = (arr: string[]) => {
+  const tempArr = removeElement(arr, "all");
+  if (tempArr.length === 0 || tempArr.length === category.value.subCategories.length) {
+    return ["all"];
+  } else {
+    return tempArr;
+  }
+};
+
+const chipList = computed(() => {
+  return generateSelectedList(selectedSubCategories.value);
 });
+
+const removeElement = (arr: string[], removeValue: any) => {
+  return arr.filter((item) => item != removeValue);
+};
+
+watch(chipList, () => {
+  console.log(chipList.value);
+  const query = {
+    ...route.query,
+    categories: chipList.value.length ? chipList.value : undefined
+  };
+  router.push({ query }).catch((err) => console.log(err));
+  callAPIClassList();
+});
+
+const handleClickChip = (value: string) => {
+  let tempArr: string[] = [];
+  if (value === "all") {
+    selectedSubCategories.value = tempArr;
+  } else {
+    tempArr = [...selectedSubCategories.value];
+    const index = tempArr.indexOf(value);
+    if (index == -1) {
+      tempArr = [...tempArr, value];
+    } else {
+      tempArr = tempArr.filter((item) => item != value);
+    }
+    if (tempArr.length === category.value.subCategories.length) {
+      selectedSubCategories.value = [];
+    } else {
+      selectedSubCategories.value = tempArr;
+    }
+  }
+};
 
 watch(sorter, () => {
-  console.log(sorter.value);
+  const query = {
+    ...route.query,
+    sort: sorter.value
+  };
+  router.push({ query }).catch((err) => console.log(err));
+  callAPIClassList();
+});
+watch(page, () => {
+  const query = {
+    ...route.query,
+    page: page.value
+  };
+  router.push({ query }).catch((err) => console.log(err));
+  callAPIClassList();
 });
 </script>
 
@@ -77,8 +142,19 @@ watch(sorter, () => {
     </div>
     <div class="tw-flex tw-w-full tw-justify-between">
       <div>
-        <v-chip-group v-model="selectedSubCategories" column multiple>
-          <v-for></v-for>
+        <v-chip-group v-model="chipList" column multiple>
+          <v-chip
+            text="All"
+            value="all"
+            variant="outlined"
+            color="primary"
+            filter
+            @click="
+              () => {
+                handleClickChip('all');
+              }
+            "
+          ></v-chip>
           <v-chip
             v-for="item in category.subCategories"
             :key="item.code"
@@ -87,6 +163,11 @@ watch(sorter, () => {
             variant="outlined"
             color="primary"
             filter
+            @click="
+              () => {
+                handleClickChip(item.id);
+              }
+            "
           ></v-chip>
         </v-chip-group>
       </div>
@@ -100,7 +181,7 @@ watch(sorter, () => {
       </div>
     </div>
     <v-row>
-      <v-col v-for="(item, index) in classList" :key="index" cols="12" md="4">
+      <v-col v-for="item in pageDetails.items" :key="item.id" cols="12" md="4">
         <ClassCard :class-model="item" />
       </v-col>
     </v-row>
@@ -112,7 +193,7 @@ watch(sorter, () => {
               <v-pagination
                 color="secondary"
                 v-model="page"
-                :length="15"
+                :length="pageDetails.totalPages"
                 class="my-4"
               ></v-pagination>
             </v-container>
