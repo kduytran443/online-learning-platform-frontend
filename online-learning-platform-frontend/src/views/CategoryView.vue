@@ -90,9 +90,11 @@ watch(chipList, () => {
   console.log(chipList.value);
   const query = {
     ...route.query,
+    page: 1,
     categories: chipList.value.length ? chipList.value : undefined
   };
   router.push({ query }).catch((err) => console.log(err));
+  page.value = 1;
   callAPIClassList();
 });
 
@@ -119,9 +121,11 @@ const handleClickChip = (value: string) => {
 watch(sorter, () => {
   const query = {
     ...route.query,
+    page: 1,
     sort: sorter.value
   };
   router.push({ query }).catch((err) => console.log(err));
+  page.value = 1;
   callAPIClassList();
 });
 watch(page, () => {
