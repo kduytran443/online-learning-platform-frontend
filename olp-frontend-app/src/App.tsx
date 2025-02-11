@@ -1,13 +1,11 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
-import NavBar from 'components/NavBar';
 import { AboutView } from 'views/home/AboutView';
 import { HomeView } from 'views/home/HomeView';
 import { DashboardLayout } from 'layouts/DashboardLayout';
-
+import 'tippy.js/dist/tippy.css';
 
 function App() {
-
   return (
     <div>
       <BrowserRouter>

@@ -7,9 +7,8 @@ interface DashboardLayoutProps {
 
 export function DashboardLayout({viewPage}: DashboardLayoutProps) {
     return <Box
-        sx={{ display: 'flex' }}
+        sx={{ display: 'flex', flexDirection: "column" }}
     >
-    <NavBar />
-    {viewPage}
+    <NavBar viewPage={viewPage} />
   </Box>;
 }
