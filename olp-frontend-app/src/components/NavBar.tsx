@@ -16,13 +16,14 @@ import InboxIcon from '@mui/icons-material/MoveToInbox';
 import InfoIcon from '@mui/icons-material/Info';
 import { useNavigate } from 'react-router-dom';
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
-import { alpha, Badge, InputBase, Menu, MenuItem, Toolbar, Typography } from '@mui/material';
+import { alpha, Avatar, Badge, InputBase, Menu, MenuItem, Toolbar, Tooltip, Typography } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
+import UserProfile from './UserProfile';
 
 const navBarMenu = [
     {
@@ -293,9 +294,6 @@ export default function NavBar({viewPage}: NavBarProps) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap component="div">
-            Online Learning
-          </Typography>
           <Search>
             <SearchIconWrapper>
               <SearchIcon />
@@ -321,17 +319,6 @@ export default function NavBar({viewPage}: NavBarProps) {
                 <NotificationsIcon />
               </Badge>
             </IconButton>
-            <IconButton
-              size="large"
-              edge="end"
-              aria-label="account of current user"
-              aria-controls={menuId}
-              aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
-              color="inherit"
-            >
-              <AccountCircle />
-            </IconButton>
           </Box>
           <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
             <IconButton
@@ -352,9 +339,12 @@ export default function NavBar({viewPage}: NavBarProps) {
       <Drawer variant="permanent" open={open}>
         <DrawerHeader>
           {open ?
-          <IconButton onClick={handleDrawerClose}>
-            <ChevronLeftIcon />
-          </IconButton>
+          <>
+            <UserProfile />
+            <IconButton onClick={handleDrawerClose}>
+              <ChevronLeftIcon />
+            </IconButton>
+          </>
           :
           <IconButton onClick={handleDrawerOpen}>
             <ChevronRightIcon />
