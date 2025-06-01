@@ -6,9 +6,13 @@ import { DashboardLayout } from 'layouts/DashboardLayout';
 import 'tippy.js/dist/tippy.css';
 import { Container, useTheme } from '@mui/material';
 import ToggleThemeButton from 'components/ToggleThemeButton';
+import "./i18n";
+import { useTranslation } from 'react-i18next';
+import i18n from './i18n';
 
 function App() {
   const theme = useTheme();
+  const { t } = useTranslation();
 
   return (
     <Container
@@ -19,6 +23,7 @@ function App() {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
+        transition: 'all 0.3s ease',
         height: "100vh"
       }}>
       {/* <BrowserRouter>
@@ -28,6 +33,9 @@ function App() {
         </Routes>
       </BrowserRouter> */}
       <ToggleThemeButton />
+      {t('hello')}
+      <button onClick={() => i18n.changeLanguage('vi')}>Tiếng Việt</button>
+      <button onClick={() => i18n.changeLanguage('en')}>English</button>
     </Container>
   );
 }
