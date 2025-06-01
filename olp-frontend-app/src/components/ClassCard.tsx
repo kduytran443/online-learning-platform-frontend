@@ -13,13 +13,13 @@ interface ClassCardProps {
 
 export default function ClassCard({ data }: ClassCardProps) {
   return (
-    <Card sx={{ height: "100%" }}>
+    <Card sx={{ height: "100%", display: "flex", flexDirection: "column" }}>
       <CardMedia
         sx={{ height: 140 }}
         image="https://mui.com/static/images/cards/contemplative-reptile.jpg"
         title={data.name}
       />
-      <CardContent>
+      <CardContent sx={{ flexGrow: 1 }}>
         <Typography gutterBottom variant="h5" component="div">
           {data.name}
         </Typography>

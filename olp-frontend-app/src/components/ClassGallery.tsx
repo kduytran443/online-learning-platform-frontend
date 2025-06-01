@@ -20,7 +20,7 @@ const ClassGallery = ({ items }: ClassGalleryProps) => {
         items={items}
         renderItem={(classItem) => <ClassCard data={classItem} />}
       />
-      <Pagination count={10} color="primary" />
+      <Pagination className="mt-8" count={10} color="primary" />
     </>
   );
 }

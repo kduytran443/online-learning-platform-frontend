@@ -13,11 +13,8 @@ import { LogoutOutlined } from '@mui/icons-material';
 
 export default function UserProfile() {
   return (
-    <CardContent sx={{ px: 2.5, pt: 3 }}>
+    <CardContent>
         <Grid container justifyContent="center" alignItems="center">
-            <Grid item>
-              <img src="https://v4.material-ui.com/static/logo.png" alt="logo" className="w-[72px]" />
-            </Grid>
             <Grid item>
                 <Stack direction="row" spacing={1.25} alignItems="center">
                 <Avatar alt="profile user" src={"https://fifaaddict.com/fo3img/players/ogimage/p91158023.jpg?20170901"} sx={{ width: 32, height: 32 }} />

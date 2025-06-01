@@ -16,7 +16,7 @@ import InboxIcon from '@mui/icons-material/MoveToInbox';
 import InfoIcon from '@mui/icons-material/Info';
 import { useNavigate } from 'react-router-dom';
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
-import { alpha, Avatar, Badge, InputBase, Menu, MenuItem, Toolbar, Tooltip, Typography } from '@mui/material';
+import { alpha, Avatar, Badge, Button, InputBase, Menu, MenuItem, Toolbar, Tooltip, Typography } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import AccountCircle from '@mui/icons-material/AccountCircle';
@@ -24,6 +24,7 @@ import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import UserProfile from './UserProfile';
+import LoginButton from './LoginButton';
 
 const navBarMenu = [
     {
@@ -395,6 +396,8 @@ export default function NavBar({viewPage}: NavBarProps) {
             </ListItem>
           ))}
         </List>
+        <Divider />
+        <LoginButton />
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3, pt: 8 }}>
         {viewPage}

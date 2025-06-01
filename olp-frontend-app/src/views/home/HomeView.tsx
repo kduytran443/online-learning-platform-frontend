@@ -8,7 +8,6 @@ export function HomeView() {
     <Box sx={{ display: "flex" }}>
       <Box component="main" sx={{ flexGrow: 1, p: 4 }}>
           <>
-            <p>Dashboard content for Homeview</p>
             <ApiFetcher fetchData={ getSimpleClasses }>
               {(itemList, loading, error) => <ClassGallery items={itemList} error={error} loading={loading} />}
             </ApiFetcher>
