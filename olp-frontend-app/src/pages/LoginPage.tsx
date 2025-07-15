@@ -1,9 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { Box, Typography, useTheme } from '@mui/material';
-import { useNavigate, useSearchParams } from 'react-router-dom';
-import axios from 'axios';
-import KeycloakTokenResponse from 'models/KeycloakTokenResponse';
-import UserInfo from 'models/UserInfo';
+import { useTheme } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 import {
   SignInPage,
   type AuthProvider,
@@ -12,7 +8,9 @@ import {
 import { AppProvider } from '@toolpad/core';
 import { AuthService } from 'services/authService';
 
-const providers = [{ id: 'credentials', name: 'Email and Password' }];
+const providers = [
+  { id: 'google', name: 'Google' }
+];
 
 export default function LoginPage() {
   const theme = useTheme();
@@ -22,6 +20,7 @@ export default function LoginPage() {
     provider,
     formData,
   ) => {
+    window.location.href = 'http://localhost:8160/oauth2/authorization/google';
 
     try {
       await AuthService.login({
