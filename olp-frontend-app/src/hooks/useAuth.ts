@@ -8,6 +8,8 @@ export interface UserDTO {
   username: string;
   roles: string[];
   permissions: string[];
+  picture: string;
+  name: string;
 }
 
 const axiosAuthClient = axios.create({
@@ -16,8 +18,15 @@ const axiosAuthClient = axios.create({
 });
 
 export function useAuth() {
-  const [status, setStatus] = useState<AuthStatus>(AuthStatus.LOADING);
-  const [user, setUser] = useState<any>(null);
+  const [status, setStatus] = useState<AuthStatus>(AuthStatus.PENDING);
+  const [user, setUser] = useState<UserDTO>({
+    name: "No name",
+    permissions: [],
+    picture: "https://i.pravatar.cc/300",
+    roles: [],
+    sub: "",
+    username: "No name"
+  });
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -36,7 +45,15 @@ export function useAuth() {
     fetchUser();
   }, [navigate]);
 
+  const isAuthenticated = () => {
+    return status === AuthStatus.AUTHENTICATED;
+  }
+
+  const isNotAuthenticated = () => {
+    return status === AuthStatus.UNAUTHENTICATED;
+  }
+
   return {
-    status, user
+    status, user, isAuthenticated
   };
 }

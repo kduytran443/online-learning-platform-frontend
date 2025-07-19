@@ -8,10 +8,11 @@ import LayersIcon from '@mui/icons-material/Layers';
 import { AppProvider, Navigation, Router } from '@toolpad/core/AppProvider';
 import { DashboardLayout } from '@toolpad/core/DashboardLayout';
 import { Box, IconButton, Typography } from '@mui/material';
-import { useAuth } from 'hooks/useAuth';
+import { useAuth, UserDTO } from 'hooks/useAuth';
 import { AuthStatus } from 'enumeration/authStatus';
 import LoginIcon from '@mui/icons-material/Login';
 import { useLocation, useNavigate } from 'react-router-dom';
+import CustomAccountMenu from 'components/CustomAccountMenu';
 
 const normalNavigation: Navigation = [
   {
@@ -104,8 +105,8 @@ const demoTheme = createTheme({
   breakpoints: {
     values: {
       xs: 0,
-      sm: 600,
-      md: 600,
+      sm: 960,
+      md: 960,
       lg: 1200,
       xl: 1536,
     },
@@ -129,13 +130,13 @@ interface DashboardLayoutBasicProps {
 
 export default function DashboardLayoutBasic({ children }: DashboardLayoutBasicProps) {
   const router = useRealRouter();
-  const auth = useAuth();
+  const {status, user} = useAuth();
 
   let navigationList: Navigation = normalNavigation;
 
-  if (auth.status === AuthStatus.AUTHENTICATED) {
+  if (status === AuthStatus.AUTHENTICATED) {
     navigationList = authNavigation;
-  } else if (auth.status === AuthStatus.UNAUTHENTICATED) {
+  } else if (status === AuthStatus.UNAUTHENTICATED) {
     navigationList = unauthNavigation;
   }
 
@@ -150,7 +151,14 @@ export default function DashboardLayoutBasic({ children }: DashboardLayoutBasicP
         router={router}
         theme={demoTheme}
     >
-      <DashboardLayout>
+      <DashboardLayout slots={{
+        toolbarAccount: () => {
+          if (status === AuthStatus.UNAUTHENTICATED) {
+            return null;
+          }
+          return <CustomAccountMenu user={user} />;
+        }
+      }}>
         {children}
       </DashboardLayout>
     </AppProvider>

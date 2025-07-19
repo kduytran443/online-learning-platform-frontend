@@ -14,32 +14,33 @@ const providers = [
 
 export default function LoginPage() {
   const theme = useTheme();
-  const navigate = useNavigate();
 
   const signIn: (provider: AuthProvider, formData: FormData) => Promise<AuthResponse> = async (
     provider,
     formData,
   ) => {
     window.location.href = 'http://localhost:8160/oauth2/authorization/google';
+    return {
+      success: 'Redirect to Google login',
+    };
 
-    try {
-      await AuthService.login({
-        username: formData?.get('email')?.toString() ?? '',
-        password: formData?.get('password')?.toString() ?? '',
-      });
+    // try {
+    //   await AuthService.login({
+    //     username: formData?.get('email')?.toString() ?? '',
+    //     password: formData?.get('password')?.toString() ?? '',
+    //   });
 
-      navigate('/dashboard');
+    //   navigate('/dashboard');
 
-      return {
-        success: 'Login successfully!'
-      };
-    } catch (error) {
-      return {
-        error: 'Login failed',
-        type: 'LoginError',
-      };
-    }
-
+    //   return {
+    //     success: 'Login successfully!'
+    //   };
+    // } catch (error) {
+    //   return {
+    //     error: 'Login failed',
+    //     type: 'LoginError',
+    //   };
+    // }
   };
 
   return (

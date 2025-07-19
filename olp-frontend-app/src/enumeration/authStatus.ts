@@ -1,5 +1,5 @@
 export enum AuthStatus {
   AUTHENTICATED = 'authenticated',
-  LOADING = 'loading',
+  PENDING = 'pending',
   UNAUTHENTICATED = 'unauthenticated',
 }
