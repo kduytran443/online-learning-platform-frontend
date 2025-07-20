@@ -21,8 +21,8 @@ export default function ClassIntroHeader({ classData }: Props) {
         src={classData.thumbnailUrl}
         alt={classData.name}
         sx={{
-          width: isSmallScreen ? "100%" : 260,
-          height: isSmallScreen ? "auto" : 160,
+          width: isSmallScreen ? "100%" : 360,
+          height: isSmallScreen ? "auto" : 220,
           borderRadius: 2,
           objectFit: "cover",
         }}

@@ -4,6 +4,9 @@ import 'tippy.js/dist/tippy.css';
 import "./i18n";
 import DashboardLayoutBasic from 'layout/DashboardLayoutBasic';
 import { routes } from 'routes/route';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import ClassroomLayout from 'layout/ClassroomLayout';
 
 function App() {
 
@@ -23,6 +26,8 @@ function wrapWithLayout(layout: string | undefined, element: JSX.Element): JSX.E
   switch (layout) {
     case "dashboard":
       return <DashboardLayoutBasic>{element}</DashboardLayoutBasic>;
+    case "classroom":
+      return <ClassroomLayout>{element}</ClassroomLayout>
     default:
       return <>{element}</>
   }

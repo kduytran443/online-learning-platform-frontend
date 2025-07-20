@@ -3,6 +3,7 @@ import ClassIntroHeader from "components/class/ClassIntroHeader";
 import ClassOverview from "components/class/ClassOverview";
 import { EnrolledClassDetails } from "models/EnrolledClassDetails";
 import { useParams } from 'react-router-dom';
+import RelatedPublicClasses from "components/class/RelatedPublicClasses";
 
 const classData: EnrolledClassDetails = {
   id: "class-001",
@@ -39,6 +40,7 @@ export default function ClassIntroPage() {
       <ClassIntroHeader classData={data} />
       <ClassOverview description={data.description} />
       <ClassComments classId={data.id} />
+      <RelatedPublicClasses />
     </div>
   );
 }

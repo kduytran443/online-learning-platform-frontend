@@ -111,6 +111,15 @@ const demoTheme = createTheme({
       xl: 1536,
     },
   },
+  components: {
+    MuiDrawer: {
+      styleOverrides: {
+        paper: {
+          width: 200,
+        },
+      },
+    },
+  },
 });
 
 export function useRealRouter(): Router {
@@ -151,14 +160,23 @@ export default function DashboardLayoutBasic({ children }: DashboardLayoutBasicP
         router={router}
         theme={demoTheme}
     >
-      <DashboardLayout slots={{
-        toolbarAccount: () => {
-          if (status === AuthStatus.UNAUTHENTICATED) {
-            return null;
+      <DashboardLayout
+        slots={{
+          toolbarAccount: () => {
+            if (status === AuthStatus.UNAUTHENTICATED) {
+              return null;
+            }
+            return <CustomAccountMenu user={user} />;
           }
-          return <CustomAccountMenu user={user} />;
-        }
-      }}>
+        }}
+        drawerProps={{
+          PaperProps: {
+            sx: {
+              width: 100,
+            },
+          },
+        }}
+      >
         {children}
       </DashboardLayout>
     </AppProvider>

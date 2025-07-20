@@ -141,6 +141,12 @@ export default function Comments({ initialVisible }: Props) {
         Bình luận
       </Typography>
 
+      <Box sx={{ width: "100%" }} mb={2}>
+        <CommentForm
+          onSubmit={(text) => console.log("New comment:", text)}
+        />
+      </Box>
+
       {!visible ? (
         <Button
           variant="outlined"
@@ -172,12 +178,6 @@ export default function Comments({ initialVisible }: Props) {
           )}
         </>
       )}
-
-      <Box sx={{ width: "100%" }} mt={4}>
-        <CommentForm
-          onSubmit={(text) => console.log("New comment:", text)}
-        />
-      </Box>
     </Box>
   );
 }

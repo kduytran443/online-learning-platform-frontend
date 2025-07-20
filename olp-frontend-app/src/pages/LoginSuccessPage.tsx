@@ -1,15 +1,11 @@
 import { useNavigate } from 'react-router-dom';
 import {
   Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogContentText,
   CircularProgress,
   Box,
   Typography,
 } from "@mui/material";
 import { useEffect } from 'react';
-import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import Lottie from 'lottie-react';
 import loginSuccessAnimation from "assets/gif/loginSuccessAnimation.json";
 import { useAuth } from 'hooks/useAuth';
@@ -57,8 +53,8 @@ export default function LoginSuccessPage() {
           textAlign: 'center',
           minWidth: 320,
           maxWidth: 400,
-            backgroundColor: (theme) => theme.palette.info.light, // dùng màu theo theme
-            color: (theme) => theme.palette.success.contrastText,     // đảm bảo chữ rõ ràng
+            backgroundColor: (theme) => theme.palette.info.light,
+            color: (theme) => theme.palette.success.contrastText,
         }
       }}
     >

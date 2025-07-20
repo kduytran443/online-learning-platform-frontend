@@ -54,3 +54,7 @@
 ::-webkit-scrollbar-track {
   background-color: transparent;
 }
+
+.ToolpadDashboard-sidebar {
+  width: 100px;
+}

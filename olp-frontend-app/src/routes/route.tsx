@@ -4,11 +4,12 @@ const LoginPage = lazy(() => import("pages/LoginPage"));
 const DashboardPage = lazy(() => import("pages/DashboardPage"));
 const LoginSuccessPage = lazy(() => import("pages/LoginSuccessPage"));
 const ClassIntroPage = lazy(() => import("pages/ClassIntroPage"));
+const ClassroomPage = lazy(() => import("pages/ClassroomPage"));
 
 export interface AppRoute {
 	path: string,
 	element: JSX.Element,
-	layout: "dashboard" | "none";
+	layout: "dashboard" | "none" | "classroom";
 }
 
 export const routes: AppRoute[] = [
@@ -31,5 +32,10 @@ export const routes: AppRoute[] = [
     path: "/login-success",
     element: <LoginSuccessPage />,
     layout: "dashboard",
+  },
+  {
+    path: "/classroom",
+    element: <ClassroomPage />,
+    layout: "classroom",
   },
 ];
