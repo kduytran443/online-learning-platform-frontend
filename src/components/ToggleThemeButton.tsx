@@ -1,7 +1,7 @@
-import { IconButton, useTheme } from "@mui/material";
-import { Brightness4, Brightness7 } from "@mui/icons-material";
-import { useColorMode } from "contexts/ColorModeContext";
-import { ThemeMode } from "enumeration/themeMode";
+import { IconButton, useTheme } from '@mui/material';
+import { Brightness4, Brightness7 } from '@mui/icons-material';
+import { useColorMode } from '@/contexts/ColorModeContext';
+import { ThemeMode } from '@/enumeration/themeMode';
 
 const ToggleThemeButton = () => {
   const theme = useTheme();

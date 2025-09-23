@@ -1,5 +1,5 @@
 import { Box, Grid, Typography } from '@mui/material';
-import { EnrolledClass } from 'models/EnrolledClass';
+import { EnrolledClass } from '@/models/EnrolledClass';
 
 export const EnrolledClassDetails = ({ cls }: { cls: EnrolledClass }) => {
   return (

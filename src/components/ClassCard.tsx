@@ -5,7 +5,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { SimpleClassDTO } from 'models/SimpleClassDTO';
+import { SimpleClassDTO } from '@/models/SimpleClassDTO';
 
 interface ClassCardProps {
   data: SimpleClassDTO;
@@ -13,7 +13,7 @@ interface ClassCardProps {
 
 export default function ClassCard({ data }: ClassCardProps) {
   return (
-    <Card sx={{ height: "100%", display: "flex", flexDirection: "column" }}>
+    <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
       <CardMedia
         sx={{ height: 140 }}
         image="https://mui.com/static/images/cards/contemplative-reptile.jpg"

@@ -1,15 +1,10 @@
 import { useNavigate } from 'react-router-dom';
-import {
-  Dialog,
-  CircularProgress,
-  Box,
-  Typography,
-} from "@mui/material";
+import { Dialog, CircularProgress, Box, Typography } from '@mui/material';
 import { useEffect } from 'react';
 import Lottie from 'lottie-react';
-import loginSuccessAnimation from "assets/gif/loginSuccessAnimation.json";
-import { useAuth } from 'hooks/useAuth';
-import { AuthStatus } from 'enumeration/authStatus';
+import loginSuccessAnimation from '@/assets/gif/loginSuccessAnimation.json';
+import { useAuth } from '@/hooks/useAuth';
+import { AuthStatus } from '@/enumeration/authStatus';
 
 export default function LoginSuccessPage() {
   const navigate = useNavigate();
@@ -17,22 +12,25 @@ export default function LoginSuccessPage() {
 
   useEffect(() => {
     if (status === AuthStatus.UNAUTHENTICATED) {
-      navigate("/login");
+      navigate('/login');
     }
 
     if (status === AuthStatus.AUTHENTICATED) {
       const timeoutInstance = setTimeout(() => {
-        navigate("/dashboard");
+        navigate('/dashboard');
       }, 2000);
 
       return () => clearTimeout(timeoutInstance);
     }
   }, [status, navigate]);
-  
+
   // PENDING state: show spinner
   if (status === AuthStatus.PENDING) {
     return (
-      <Dialog open={true} PaperProps={{ sx: { borderRadius: 4, p: 4, minWidth: 320, textAlign: "center" } }}>
+      <Dialog
+        open={true}
+        PaperProps={{ sx: { borderRadius: 4, p: 4, minWidth: 320, textAlign: 'center' } }}
+      >
         <CircularProgress />
         <Typography mt={2}>Checking login status...</Typography>
       </Dialog>
@@ -53,15 +51,12 @@ export default function LoginSuccessPage() {
           textAlign: 'center',
           minWidth: 320,
           maxWidth: 400,
-            backgroundColor: (theme) => theme.palette.info.light,
-            color: (theme) => theme.palette.success.contrastText,
-        }
+          backgroundColor: (theme) => theme.palette.info.light,
+          color: (theme) => theme.palette.success.contrastText,
+        },
       }}
     >
-      <Lottie
-        animationData={loginSuccessAnimation}
-        style={{ width: 180, margin: '0 auto' }}
-      />
+      <Lottie animationData={loginSuccessAnimation} style={{ width: 180, margin: '0 auto' }} />
 
       <Typography variant="h5" fontWeight="bold" mt={2} color="text.secondary">
         Login Successful!

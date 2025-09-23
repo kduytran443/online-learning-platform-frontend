@@ -1,30 +1,25 @@
-import { EnrolledClassDetails } from "models/EnrolledClassDetails";
-import { Avatar, Box, Rating, Stack, Typography, useMediaQuery, useTheme } from "@mui/material";
+import { EnrolledClassDetails } from '@/models/EnrolledClassDetails';
+import { Avatar, Box, Rating, Stack, Typography, useMediaQuery, useTheme } from '@mui/material';
 
 interface Props {
   classData: EnrolledClassDetails;
 }
 
-
 export default function ClassIntroHeader({ classData }: Props) {
   const theme = useTheme();
-  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
   return (
-    <Stack
-      direction={isSmallScreen ? "column" : "row"}
-      spacing={3}
-      alignItems="flex-start"
-    >
+    <Stack direction={isSmallScreen ? 'column' : 'row'} spacing={3} alignItems="flex-start">
       <Box
         component="img"
         src={classData.thumbnailUrl}
         alt={classData.name}
         sx={{
-          width: isSmallScreen ? "100%" : 360,
-          height: isSmallScreen ? "auto" : 220,
+          width: isSmallScreen ? '100%' : 360,
+          height: isSmallScreen ? 'auto' : 220,
           borderRadius: 2,
-          objectFit: "cover",
+          objectFit: 'cover',
         }}
       />
 
@@ -45,8 +40,7 @@ export default function ClassIntroHeader({ classData }: Props) {
         </Stack>
 
         <Typography variant="body2" mt={1}>
-          {classData.numberOfLessons} bài học ·{" "}
-          {classData.totalStudents} học viên
+          {classData.numberOfLessons} bài học · {classData.totalStudents} học viên
         </Typography>
 
         <Stack direction="row" alignItems="center" spacing={1} mt={1}>

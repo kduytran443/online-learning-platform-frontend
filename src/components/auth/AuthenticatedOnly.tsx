@@ -1,5 +1,5 @@
-import { AuthStatus } from "enumeration/authStatus";
-import { useAuth } from "hooks/useAuth";
+import { AuthStatus } from '@/enumeration/authStatus';
+import { useAuth } from '@/hooks/useAuth';
 
 export default function AuthenticatedOnly({ children }: { children: React.ReactNode }) {
   const { status } = useAuth();

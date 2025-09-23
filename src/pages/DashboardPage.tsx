@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Grid, Typography } from '@mui/material';
-import { EnrolledClassList } from 'components/class/EnrolledClassList';
-import { EnrolledClass } from 'models/EnrolledClass';
+import { EnrolledClassList } from '@/components/class/EnrolledClassList';
+import { EnrolledClass } from '@/models/EnrolledClass';
 
 export const enrolledClasses: EnrolledClass[] = [
   {
@@ -92,9 +92,7 @@ export default function DashboardPage() {
       <Typography variant="h4" gutterBottom>
         Dashboard
       </Typography>
-      <Typography gutterBottom>
-        Joining Classes:
-      </Typography>
+      <Typography gutterBottom>Joining Classes:</Typography>
       <Grid item xs={12} md={6}>
         <EnrolledClassList classes={enrolledClasses} />
       </Grid>

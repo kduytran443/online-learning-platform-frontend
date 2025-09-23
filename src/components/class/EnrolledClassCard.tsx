@@ -11,10 +11,10 @@ import {
   Button,
 } from '@mui/material';
 import { EnrolledClassDetails } from './EnrolledClassDetails';
-import { EnrolledClass } from 'models/EnrolledClass';
+import { EnrolledClass } from '@/models/EnrolledClass';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { classIntroPath } from 'utils/pathUtils';
+import { classIntroPath } from '@/utils/pathUtils';
 
 interface Props {
   cls: EnrolledClass;
@@ -71,7 +71,7 @@ export const EnrolledClassCard = ({ cls }: Props) => {
             <Button
               variant="outlined"
               size="small"
-              onClick={() => setIsExpanded(prev => !prev)}
+              onClick={() => setIsExpanded((prev) => !prev)}
               sx={{ minWidth: 120 }}
             >
               {isExpanded ? 'Hide' : 'More'}

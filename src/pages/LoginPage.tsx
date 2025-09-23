@@ -4,7 +4,8 @@ import { AppProvider } from '@toolpad/core';
 
 const providers = [{ id: 'google', name: 'Google' }];
 
-const googleLoginUrl = import.meta.env.VITE_API_GOOGLE_OAUTH2_LOGIN_URL;
+const googleLoginUrl = import.meta.env.VITE_API_OAUTH2_GOOGLE_LOGIN_URL;
+console.log('googleLoginUrl', googleLoginUrl);
 
 export default function LoginPage() {
   const theme = useTheme();
