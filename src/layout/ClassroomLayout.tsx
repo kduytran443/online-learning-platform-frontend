@@ -1,6 +1,6 @@
 import { Box, Tabs, Tab, Typography, Paper, Avatar, Stack, Container } from '@mui/material';
 import { Outlet, useLocation, useNavigate, useParams } from 'react-router-dom';
-import DashboardLayoutBasic from 'layout/DashboardLayoutBasic';
+import DashboardLayoutBasic from '@/layout/DashboardLayoutBasic';
 
 const tabItems = [
   { label: 'Tổng quan', path: '' },

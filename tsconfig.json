@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
-    "baseUrl" : "./src",
+    "baseUrl" : ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["src/*"]
     },
     "target": "es5",
     "lib": [
@@ -25,6 +25,7 @@
     "jsx": "react-jsx"
   },
   "include": [
-    "src"
+    "src",
+    "src/vite-env.d.ts"
   ]
 }

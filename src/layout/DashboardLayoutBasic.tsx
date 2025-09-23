@@ -8,11 +8,11 @@ import LayersIcon from '@mui/icons-material/Layers';
 import { AppProvider, Navigation, Router } from '@toolpad/core/AppProvider';
 import { DashboardLayout } from '@toolpad/core/DashboardLayout';
 import { Box, IconButton, Typography } from '@mui/material';
-import { useAuth, UserDTO } from 'hooks/useAuth';
-import { AuthStatus } from 'enumeration/authStatus';
+import { useAuth, UserDTO } from '@/hooks/useAuth';
+import { AuthStatus } from '@/enumeration/authStatus';
 import LoginIcon from '@mui/icons-material/Login';
 import { useLocation, useNavigate } from 'react-router-dom';
-import CustomAccountMenu from 'components/CustomAccountMenu';
+import CustomAccountMenu from '@/components/CustomAccountMenu';
 
 const normalNavigation: Navigation = [
   {
@@ -168,13 +168,6 @@ export default function DashboardLayoutBasic({ children }: DashboardLayoutBasicP
             }
             return <CustomAccountMenu user={user} />;
           }
-        }}
-        drawerProps={{
-          PaperProps: {
-            sx: {
-              width: 100,
-            },
-          },
         }}
       >
         {children}

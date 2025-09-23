@@ -1,10 +1,10 @@
 import { lazy } from "react";
 
-const LoginPage = lazy(() => import("pages/LoginPage"));
-const DashboardPage = lazy(() => import("pages/DashboardPage"));
-const LoginSuccessPage = lazy(() => import("pages/LoginSuccessPage"));
-const ClassIntroPage = lazy(() => import("pages/ClassIntroPage"));
-const ClassroomPage = lazy(() => import("pages/ClassroomPage"));
+const LoginPage = lazy(() => import("@/pages/LoginPage"));
+const DashboardPage = lazy(() => import("@/pages/DashboardPage"));
+const LoginSuccessPage = lazy(() => import("@/pages/LoginSuccessPage"));
+const ClassIntroPage = lazy(() => import("@/pages/ClassIntroPage"));
+const ClassroomPage = lazy(() => import("@/pages/ClassroomPage"));
 
 export interface AppRoute {
 	path: string,

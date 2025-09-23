@@ -1,4 +1,4 @@
-import { AuthStatus } from "enumeration/authStatus";
+import { AuthStatus } from "@/enumeration/authStatus";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";

@@ -2,11 +2,9 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 import 'tippy.js/dist/tippy.css';
 import "./i18n";
-import DashboardLayoutBasic from 'layout/DashboardLayoutBasic';
-import { routes } from 'routes/route';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-import ClassroomLayout from 'layout/ClassroomLayout';
+import DashboardLayoutBasic from '@/layout/DashboardLayoutBasic';
+import { routes } from '@/routes/route';
+import ClassroomLayout from '@/layout/ClassroomLayout';
 
 function App() {
 
