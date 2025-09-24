@@ -1,41 +1,47 @@
-import { lazy } from "react";
+import ProfilePage from '@/pages/ProfilePage';
+import { lazy } from 'react';
 
-const LoginPage = lazy(() => import("@/pages/LoginPage"));
-const DashboardPage = lazy(() => import("@/pages/DashboardPage"));
-const LoginSuccessPage = lazy(() => import("@/pages/LoginSuccessPage"));
-const ClassIntroPage = lazy(() => import("@/pages/ClassIntroPage"));
-const ClassroomPage = lazy(() => import("@/pages/ClassroomPage"));
+const LoginPage = lazy(() => import('@/pages/LoginPage'));
+const DashboardPage = lazy(() => import('@/pages/DashboardPage'));
+const LoginSuccessPage = lazy(() => import('@/pages/LoginSuccessPage'));
+const ClassIntroPage = lazy(() => import('@/pages/ClassIntroPage'));
+const ClassroomPage = lazy(() => import('@/pages/ClassroomPage'));
 
 export interface AppRoute {
-	path: string,
-	element: JSX.Element,
-	layout: "dashboard" | "none" | "classroom";
+  path: string;
+  element: JSX.Element;
+  layout: 'dashboard' | 'none' | 'classroom';
 }
 
 export const routes: AppRoute[] = [
   {
-    path: "/login",
+    path: '/login',
     element: <LoginPage />,
-    layout: "dashboard",
+    layout: 'dashboard',
   },
   {
-    path: "/dashboard",
+    path: '/dashboard',
     element: <DashboardPage />,
-    layout: "dashboard",
+    layout: 'dashboard',
   },
   {
-    path: "/class/:classId/intro",
+    path: '/class/:classId/intro',
     element: <ClassIntroPage />,
-    layout: "dashboard",
+    layout: 'dashboard',
   },
   {
-    path: "/login-success",
+    path: '/login-success',
     element: <LoginSuccessPage />,
-    layout: "dashboard",
+    layout: 'dashboard',
   },
   {
-    path: "/classroom",
+    path: '/classroom',
     element: <ClassroomPage />,
-    layout: "classroom",
+    layout: 'classroom',
+  },
+  {
+    path: '/profile',
+    element: <ProfilePage />,
+    layout: 'dashboard',
   },
 ];

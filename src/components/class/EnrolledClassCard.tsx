@@ -26,58 +26,49 @@ export const EnrolledClassCard = ({ cls }: Props) => {
 
   return (
     <Card>
-      <Grid
-        container
-        alignItems="center"
-        spacing={2}
-        px={2}
-        py={1}
-        direction={{ xs: 'column', md: 'row' }}
-      >
-        <Grid item>
-          <CardMedia
-            component="img"
-            sx={{ width: 100, height: 70, borderRadius: 2 }}
-            image={cls.thumbnailUrl}
-            alt={cls.name}
+      <Grid>
+        <CardMedia
+          component="img"
+          sx={{ width: 100, height: 70, borderRadius: 2 }}
+          image={cls.thumbnailUrl}
+          alt={cls.name}
+        />
+      </Grid>
+
+      <Grid item xs sx={{ flex: 1 }}>
+        <CardContent sx={{ padding: 0 }}>
+          <Typography variant="h6">{cls.name}</Typography>
+          <Typography variant="body2" color="text.secondary">
+            Giảng viên: {cls.instructor.name}
+          </Typography>
+          <LinearProgress
+            variant="determinate"
+            value={cls.progress}
+            sx={{ mt: 1, height: 6, borderRadius: 3 }}
           />
-        </Grid>
+        </CardContent>
+      </Grid>
 
-        <Grid item xs sx={{ flex: 1 }}>
-          <CardContent sx={{ padding: 0 }}>
-            <Typography variant="h6">{cls.name}</Typography>
-            <Typography variant="body2" color="text.secondary">
-              Giảng viên: {cls.instructor.name}
-            </Typography>
-            <LinearProgress
-              variant="determinate"
-              value={cls.progress}
-              sx={{ mt: 1, height: 6, borderRadius: 3 }}
-            />
-          </CardContent>
-        </Grid>
-
-        <Grid item>
-          <Stack direction={{ xs: 'column', sm: 'column' }} spacing={1}>
-            <Button
-              variant="contained"
-              size="small"
-              color={cls.status === 'completed' ? 'success' : 'primary'}
-              sx={{ minWidth: 120 }}
-              onClick={() => navigate(classIntroPath(cls.id))}
-            >
-              {cls.status === 'completed' ? 'Completed' : 'Continue'}
-            </Button>
-            <Button
-              variant="outlined"
-              size="small"
-              onClick={() => setIsExpanded((prev) => !prev)}
-              sx={{ minWidth: 120 }}
-            >
-              {isExpanded ? 'Hide' : 'More'}
-            </Button>
-          </Stack>
-        </Grid>
+      <Grid item>
+        <Stack direction={{ xs: 'column', sm: 'column' }} spacing={1}>
+          <Button
+            variant="contained"
+            size="small"
+            color={cls.status === 'completed' ? 'success' : 'primary'}
+            sx={{ minWidth: 120 }}
+            onClick={() => navigate(classIntroPath(cls.id))}
+          >
+            {cls.status === 'completed' ? 'Completed' : 'Continue'}
+          </Button>
+          <Button
+            variant="outlined"
+            size="small"
+            onClick={() => setIsExpanded((prev) => !prev)}
+            sx={{ minWidth: 120 }}
+          >
+            {isExpanded ? 'Hide' : 'More'}
+          </Button>
+        </Stack>
       </Grid>
 
       <Collapse in={isExpanded} timeout="auto" unmountOnExit>

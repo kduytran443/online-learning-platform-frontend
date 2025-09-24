@@ -7,22 +7,22 @@ import {
   Typography,
   Box,
   Divider,
-  ListItemIcon
+  ListItemIcon,
 } from '@mui/material';
-import { UserDTO } from 'hooks/useAuth';
+import { UserDTO } from '@/hooks/useAuth';
 import LogoutIcon from '@mui/icons-material/Logout';
 import SettingsIcon from '@mui/icons-material/Settings';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import Badge from '@mui/material/Badge';
-import NotificationsIcon from '@mui/icons-material/Notifications';
 import NotificationMenu from './NotificationMenu';
+import { useNavigate } from 'react-router-dom';
 
 interface CustomAccountMenuProps {
-  user: UserDTO
+  user: UserDTO;
 }
 
-export default function CustomAccountMenu({user}: CustomAccountMenuProps) {
+export default function CustomAccountMenu({ user }: CustomAccountMenuProps) {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const navigate = useNavigate();
 
   const handleOpen = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -34,10 +34,9 @@ export default function CustomAccountMenu({user}: CustomAccountMenuProps) {
 
   return (
     <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
-
       <NotificationMenu />
       <IconButton onClick={handleOpen} size="small" sx={{ ml: 2 }}>
-        <Avatar src={user.picture} alt={user.name} />
+        <Avatar src={user.avatar} alt={user.name} />
       </IconButton>
 
       <Menu
@@ -48,8 +47,8 @@ export default function CustomAccountMenu({user}: CustomAccountMenuProps) {
         PaperProps={{
           sx: {
             width: 220,
-            paddingY: 1
-          }
+            paddingY: 1,
+          },
         }}
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
@@ -65,7 +64,7 @@ export default function CustomAccountMenu({user}: CustomAccountMenuProps) {
 
         <Divider sx={{ my: 1 }} />
 
-        <MenuItem sx={{ my: 1, px: 2 }}>
+        <MenuItem onClick={(e) => navigate('/profile')} sx={{ my: 1, px: 2 }}>
           <ListItemIcon>
             <AccountCircleIcon fontSize="small" />
           </ListItemIcon>
@@ -83,7 +82,9 @@ export default function CustomAccountMenu({user}: CustomAccountMenuProps) {
           <ListItemIcon>
             <LogoutIcon fontSize="small" color="error" />
           </ListItemIcon>
-          <Typography variant="body2" color="error">Logout</Typography>
+          <Typography variant="body2" color="error">
+            Logout
+          </Typography>
         </MenuItem>
       </Menu>
     </Box>

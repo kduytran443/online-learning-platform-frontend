@@ -1,7 +1,8 @@
 import React from 'react';
-import { Box, Grid, Typography } from '@mui/material';
+import { Box, Card, CardContent, Grid, Typography } from '@mui/material';
 import { EnrolledClassList } from '@/components/class/EnrolledClassList';
 import { EnrolledClass } from '@/models/EnrolledClass';
+import { EnrolledClassCard } from '@/components/class/EnrolledClassCard';
 
 export const enrolledClasses: EnrolledClass[] = [
   {
@@ -89,13 +90,34 @@ export const enrolledClasses: EnrolledClass[] = [
 export default function DashboardPage() {
   return (
     <Box sx={{ p: 4 }}>
-      <Typography variant="h4" gutterBottom>
-        Dashboard
-      </Typography>
-      <Typography gutterBottom>Joining Classes:</Typography>
-      <Grid item xs={12} md={6}>
-        <EnrolledClassList classes={enrolledClasses} />
-      </Grid>
+      <div style={{ padding: 16 }}>
+        <Typography variant="h4" gutterBottom>
+          Dashboard
+        </Typography>
+        <Typography gutterBottom>Joining Classes:</Typography>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
+          <div className="bg-red-200">
+            <EnrolledClassCard cls={enrolledClasses[0]} />
+          </div>
+          <div className="bg-blue-200">
+            <EnrolledClassCard cls={enrolledClasses[0]} />
+          </div>
+          <div className="bg-green-200">
+            <EnrolledClassCard cls={enrolledClasses[0]} />
+          </div>
+        </div>
+        <Grid container spacing={2}>
+          <Grid item xs={12} sm={6} md={4}>
+            <Card>1</Card>
+          </Grid>
+          <Grid item xs={12} sm={6} md={4}>
+            <Card>2</Card>
+          </Grid>
+          <Grid item xs={12} sm={6} md={4}>
+            <Card>3</Card>
+          </Grid>
+        </Grid>
+      </div>
     </Box>
   );
 }
