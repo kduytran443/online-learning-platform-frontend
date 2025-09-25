@@ -1,13 +1,14 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 import 'tippy.js/dist/tippy.css';
-import "./i18n";
+import './i18n';
 import DashboardLayoutBasic from '@/layout/DashboardLayoutBasic';
 import { routes } from '@/routes/route';
 import ClassroomLayout from '@/layout/ClassroomLayout';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 function App() {
-
   return (
     <BrowserRouter>
       <Routes>
@@ -22,12 +23,12 @@ function App() {
 
 function wrapWithLayout(layout: string | undefined, element: JSX.Element): JSX.Element {
   switch (layout) {
-    case "dashboard":
+    case 'dashboard':
       return <DashboardLayoutBasic>{element}</DashboardLayoutBasic>;
-    case "classroom":
-      return <ClassroomLayout>{element}</ClassroomLayout>
+    case 'classroom':
+      return <ClassroomLayout>{element}</ClassroomLayout>;
     default:
-      return <>{element}</>
+      return <>{element}</>;
   }
 }
 

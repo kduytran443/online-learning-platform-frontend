@@ -6,10 +6,11 @@ import { classIntroPath } from '@/utils/pathUtils';
 const dummyClasses = [
   {
     id: '1',
-    title: 'Lập trình Web cơ bản',
+    title: 'Lập trình Web cơ bản Spring Boot cho người mới Spring Boot cho người mới',
     image:
       'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiby9e7qy4vKIfBjKIybASUs5wUSne-VloayYrurUm9kp5v742cnLnEhDht-ptiG4WBefRBRVPAGM7zYD2PnyBagoQxOmAhKML-GxRZ59Um9CQzbYNEtS2GdODshc-QF0PrhhXQaE6GoaI/w1200-h630-p-k-no-nu/0-QmxDMtQShSHGzC6v.jpg',
-    shortDesc: 'Tìm hiểu HTML, CSS và JavaScript.',
+    shortDesc:
+      'Tìm hiểu HTML, CSS và JavaScript. Tìm hiểu HTML, CSS và JavaScript Tìm hiểu HTML, CSS và JavaScript',
   },
   {
     id: '2',
@@ -41,7 +42,7 @@ const dummyClasses = [
   },
   {
     id: '3',
-    title: 'Spring Boot cho người mới',
+    title: 'Spring Boot cho người mới Spring Boot cho người mới Spring Boot cho người mới',
     image:
       'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiby9e7qy4vKIfBjKIybASUs5wUSne-VloayYrurUm9kp5v742cnLnEhDht-ptiG4WBefRBRVPAGM7zYD2PnyBagoQxOmAhKML-GxRZ59Um9CQzbYNEtS2GdODshc-QF0PrhhXQaE6GoaI/w1200-h630-p-k-no-nu/0-QmxDMtQShSHGzC6v.jpg',
     shortDesc: 'API RESTful, cấu trúc project, JPA.',
@@ -85,10 +86,36 @@ export default function RelatedPublicClasses() {
           >
             <CardMedia component="img" height="140" image={cls.image} alt={cls.title} />
             <CardContent>
-              <Typography variant="subtitle1" fontWeight={600}>
+              <Typography
+                sx={{
+                  display: '-webkit-box',
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis',
+                  WebkitLineClamp: 2,
+                  WebkitBoxOrient: 'vertical',
+                  lineHeight: 1.4,
+                  minHeight: '2.8em',
+                }}
+                variant="subtitle1"
+                fontWeight={600}
+              >
                 {cls.title}
               </Typography>
-              <Typography variant="body2" color="text.secondary">
+              <Typography
+                sx={{
+                  marginTop: '1em',
+                  display: '-webkit-box',
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis',
+                  WebkitLineClamp: 3,
+                  fontSize: '0.7rem',
+                  WebkitBoxOrient: 'vertical',
+                  lineHeight: 1.4,
+                  minHeight: '4.2em',
+                }}
+                variant="body2"
+                color="text.secondary"
+              >
                 {cls.shortDesc}
               </Typography>
             </CardContent>

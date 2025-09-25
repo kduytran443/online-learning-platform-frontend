@@ -17,7 +17,7 @@ export default function ClassroomLayout({ children }: { children: React.ReactNod
   const { id } = useParams();
 
   // Determine current tab index
-  const currentTab = tabItems.findIndex(tab => location.pathname.endsWith(tab.path));
+  const currentTab = tabItems.findIndex((tab) => location.pathname.endsWith(tab.path));
 
   const handleTabChange = (_: React.SyntheticEvent, newValue: number) => {
     const newPath = `/class/${id}/${tabItems[newValue].path}`;
@@ -26,7 +26,7 @@ export default function ClassroomLayout({ children }: { children: React.ReactNod
 
   return (
     <DashboardLayoutBasic>
-      <Container maxWidth="lg" sx={{ py: 3 }}>
+      <Container maxWidth={false} sx={{ py: 3 }}>
         {/* Header Banner */}
         <Paper
           elevation={3}
@@ -65,37 +65,37 @@ export default function ClassroomLayout({ children }: { children: React.ReactNod
             }}
           >
             <Stack direction="row" alignItems="center" spacing={2}>
-              <Avatar src="https://img-c.udemycdn.com/user/200_H/31334738_a13c_3.jpg" sx={{ width: 64, height: 64 }} />
+              <Avatar
+                src="https://img-c.udemycdn.com/user/200_H/31334738_a13c_3.jpg"
+                sx={{ width: 64, height: 64 }}
+              />
               <Box>
                 <Typography variant="h5" fontWeight="bold">
                   Lập trình Web Fullstack
                 </Typography>
-                <Typography variant="body1">
-                  GV: Nguyễn Văn A
-                </Typography>
+                <Typography variant="body1">GV: Nguyễn Văn A</Typography>
               </Box>
             </Stack>
           </Box>
         </Paper>
-  
+
         {/* Tabs */}
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
           <Tabs
             variant="scrollable"
             scrollButtons="auto"
             allowScrollButtonsMobile
-            value={currentTab === -1 ? 0 : currentTab} onChange={handleTabChange}
+            value={currentTab === -1 ? 0 : currentTab}
+            onChange={handleTabChange}
           >
             {tabItems.map((tab, index) => (
               <Tab key={index} label={tab.label} />
             ))}
           </Tabs>
         </Box>
-  
+
         {/* Page content */}
-        <Box mt={3}>
-          {children}
-        </Box>
+        <Box mt={3}>{children}</Box>
       </Container>
     </DashboardLayoutBasic>
   );

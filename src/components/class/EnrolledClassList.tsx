@@ -8,7 +8,7 @@ interface Props {
 
 export const EnrolledClassList = ({ classes }: Props) => {
   return (
-    <Box display="flex" flexDirection="row" flexWrap={'wrap'} gap={3}>
+    <Grid container spacing={1}>
       {classes.map((cls) => (
         <Grid
           item
@@ -20,6 +20,6 @@ export const EnrolledClassList = ({ classes }: Props) => {
           <EnrolledClassCard cls={cls} />
         </Grid>
       ))}
-    </Box>
+    </Grid>
   );
 };

@@ -95,28 +95,7 @@ export default function DashboardPage() {
           Dashboard
         </Typography>
         <Typography gutterBottom>Joining Classes:</Typography>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
-          <div className="bg-red-200">
-            <EnrolledClassCard cls={enrolledClasses[0]} />
-          </div>
-          <div className="bg-blue-200">
-            <EnrolledClassCard cls={enrolledClasses[0]} />
-          </div>
-          <div className="bg-green-200">
-            <EnrolledClassCard cls={enrolledClasses[0]} />
-          </div>
-        </div>
-        <Grid container spacing={2}>
-          <Grid item xs={12} sm={6} md={4}>
-            <Card>1</Card>
-          </Grid>
-          <Grid item xs={12} sm={6} md={4}>
-            <Card>2</Card>
-          </Grid>
-          <Grid item xs={12} sm={6} md={4}>
-            <Card>3</Card>
-          </Grid>
-        </Grid>
+        <EnrolledClassList classes={enrolledClasses} />
       </div>
     </Box>
   );

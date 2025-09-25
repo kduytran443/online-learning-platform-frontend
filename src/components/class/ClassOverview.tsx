@@ -1,3 +1,5 @@
+import { Typography } from '@mui/material';
+
 interface Props {
   description: string;
 }
@@ -5,7 +7,9 @@ interface Props {
 export default function ClassOverview({ description }: Props) {
   return (
     <div>
-      <h3 className="text-lg font-medium mb-2">Giới thiệu</h3>
+      <Typography variant="h6" gutterBottom>
+        Introduction
+      </Typography>
       <p className="text-sm leading-relaxed">{description}</p>
     </div>
   );

@@ -1,8 +1,8 @@
-import { Box, IconButton, useTheme, alpha } from "@mui/material";
+import { Box, IconButton, useTheme, alpha } from '@mui/material';
 import ArrowForward from '@mui/icons-material/ArrowForward';
 import ArrowBack from '@mui/icons-material/ArrowBack';
-import Slider from "react-slick";
-import React, { useRef, useState } from "react";
+import Slider from 'react-slick';
+import React, { useRef, useState } from 'react';
 
 type CustomSliderProps<T> = {
   items: T[];
@@ -11,12 +11,12 @@ type CustomSliderProps<T> = {
   itemKey?: (item: T, index: number) => string;
 };
 
-
 function NextArrow({ onClick, disabled }: { onClick?: () => void; disabled?: boolean }) {
   const theme = useTheme();
-  const bgColor = theme.palette.mode === 'dark'
-    ? alpha(theme.palette.common.white, 0.08)
-    : alpha(theme.palette.grey[200], 0.8);
+  const bgColor =
+    theme.palette.mode === 'dark'
+      ? alpha(theme.palette.common.white, 0.08)
+      : alpha(theme.palette.grey[200], 0.8);
 
   return (
     <IconButton
@@ -52,9 +52,10 @@ function NextArrow({ onClick, disabled }: { onClick?: () => void; disabled?: boo
 
 function PrevArrow({ onClick, disabled }: { onClick?: () => void; disabled?: boolean }) {
   const theme = useTheme();
-  const bgColor = theme.palette.mode === 'dark'
-    ? alpha(theme.palette.common.white, 0.08)
-    : alpha(theme.palette.grey[200], 0.8);
+  const bgColor =
+    theme.palette.mode === 'dark'
+      ? alpha(theme.palette.common.white, 0.08)
+      : alpha(theme.palette.grey[200], 0.8);
 
   return (
     <IconButton
@@ -95,7 +96,7 @@ export default function CustomSlider<T>({
   itemKey,
 }: CustomSliderProps<T>) {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const sliderRef = useRef<any>();
+  const sliderRef = useRef<Slider | null>(null);
   const totalSlides = items.length;
 
   const settings = {
@@ -112,10 +113,7 @@ export default function CustomSlider<T>({
       />
     ),
     prevArrow: (
-      <PrevArrow
-        onClick={() => sliderRef.current?.slickPrev()}
-        disabled={currentSlide <= 0}
-      />
+      <PrevArrow onClick={() => sliderRef.current?.slickPrev()} disabled={currentSlide <= 0} />
     ),
     responsive: [
       {

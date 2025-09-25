@@ -90,8 +90,8 @@ const unauthNavigation: Navigation = [
   {
     title: 'Login',
     segment: 'login',
-    icon: <LoginIcon />
-  }
+    icon: <LoginIcon />,
+  },
 ];
 
 const demoTheme = createTheme({
@@ -105,8 +105,8 @@ const demoTheme = createTheme({
   breakpoints: {
     values: {
       xs: 0,
-      sm: 960,
-      md: 960,
+      sm: 600, // tablet
+      md: 900, // desktop small
       lg: 1200,
       xl: 1536,
     },
@@ -134,12 +134,12 @@ export function useRealRouter(): Router {
 }
 
 interface DashboardLayoutBasicProps {
-  children: React.ReactNode
+  children: React.ReactNode;
 }
 
 export default function DashboardLayoutBasic({ children }: DashboardLayoutBasicProps) {
   const router = useRealRouter();
-  const {status, user} = useAuth();
+  const { status, user } = useAuth();
 
   let navigationList: Navigation = normalNavigation;
 
@@ -151,14 +151,14 @@ export default function DashboardLayoutBasic({ children }: DashboardLayoutBasicP
 
   return (
     <AppProvider
-        branding={{
-          logo: <img src="https://mui.com/static/logo.png" alt="MUI logo" />,
-          title: 'O L P',
-          homeUrl: '/toolpad/core/introduction',
-        }}
-        navigation={navigationList}
-        router={router}
-        theme={demoTheme}
+      branding={{
+        logo: <img src="https://mui.com/static/logo.png" alt="MUI logo" />,
+        title: 'O L P',
+        homeUrl: '/toolpad/core/introduction',
+      }}
+      navigation={navigationList}
+      router={router}
+      theme={demoTheme}
     >
       <DashboardLayout
         slots={{
@@ -167,7 +167,7 @@ export default function DashboardLayoutBasic({ children }: DashboardLayoutBasicP
               return null;
             }
             return <CustomAccountMenu user={user} />;
-          }
+          },
         }}
       >
         {children}
